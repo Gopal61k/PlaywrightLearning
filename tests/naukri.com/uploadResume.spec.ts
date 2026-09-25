@@ -1,8 +1,8 @@
 import{test,expect} from "@playwright/test"
-
+ 
 test("upload resume in naukri ",async({page})=>
 {
-    await page.goto("http://www.naukri.com")
+    await page.goto("http://www.naukri.com",{timeout:2000})
 
     //login locator
     await page.getByTitle('Jobseeker Login').click()

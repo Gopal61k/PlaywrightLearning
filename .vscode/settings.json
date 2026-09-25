@@ -1,5 +1,6 @@
 {
     "cSpell.words": [
         "admincontext"
-    ]
+    ],
+    "git.ignoreLimitWarning": true
 }
