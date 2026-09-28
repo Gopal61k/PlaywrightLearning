@@ -8,8 +8,8 @@ export class HomePage
     private readonly productLinks:Locator;
     private readonly addToCartButton:Locator;
     private readonly cartLink:Locator;
-    private readonly categoryLinks:Locator;
-
+   // private readonly categoryLinks:Locator;
+   private readonly categoryLinks:Locator;
 
     //Initialize constructor
 

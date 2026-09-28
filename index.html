@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Demo Landing Page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container nav">
+        <div class="brand">Nova<span>Flow</span></div>
+        <nav class="nav-links" aria-label="Main navigation">
+          <a href="#features">Features</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <button class="btn btn-primary">Get Started</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow">Simple. Smart. Scalable.</p>
+            <h1>Build better digital experiences for your customers.</h1>
+            <p class="subtitle">
+              Manage projects, automate workflows, and improve productivity from one beautiful platform.
+            </p>
+            <div class="cta-row">
+              <button class="btn btn-primary" type="button">Book Demo</button>
+              <button class="btn btn-secondary" type="button">Learn More</button>
+            </div>
+            <ul class="stats" aria-label="Key statistics">
+              <li><strong>12k+</strong><span>Teams onboarded</span></li>
+              <li><strong>4.9/5</strong><span>User rating</span></li>
+              <li><strong>99.9%</strong><span>Uptime</span></li>
+            </ul>
+          </div>
+
+          <div class="hero-card" aria-label="Dashboard preview">
+            <div class="card-header">
+              <span class="dot red"></span>
+              <span class="dot amber"></span>
+              <span class="dot green"></span>
+            </div>
+            <div class="metric-panel">
+              <div>
+                <small>Revenue</small>
+                <h3>$84.2k</h3>
+              </div>
+              <span class="trend up">+18.4%</span>
+            </div>
+            <div class="chart">
+              <span style="height: 30%"></span>
+              <span style="height: 50%"></span>
+              <span style="height: 40%"></span>
+              <span style="height: 68%"></span>
+              <span style="height: 80%"></span>
+              <span style="height: 75%"></span>
+              <span style="height: 100%"></span>
+            </div>
+            <div class="mini-grid">
+              <div class="mini-card">
+                <label>Leads</label>
+                <strong>1,248</strong>
+              </div>
+              <div class="mini-card">
+                <label>Conversion</label>
+                <strong>7.8%</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="features" class="features container">
+        <div class="section-heading">
+          <p class="eyebrow">Why teams choose us</p>
+          <h2>Everything you need in one workspace</h2>
+        </div>
+
+        <div class="feature-grid">
+          <article class="feature-item">
+            <span class="icon">⚡</span>
+            <h3>Fast workflows</h3>
+            <p>Automate recurring tasks and accelerate project delivery without increasing complexity.</p>
+          </article>
+          <article class="feature-item">
+            <span class="icon">🔒</span>
+            <h3>Secure by design</h3>
+            <p>Keep your data protected with enterprise-ready controls and access management.</p>
+          </article>
+          <article class="feature-item">
+            <span class="icon">📊</span>
+            <h3>Actionable insights</h3>
+            <p>Turn real-time data into smarter decisions with dashboards built to surface what matters.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="about" class="info-strip">
+        <div class="container info-grid">
+          <div>
+            <p class="eyebrow">Built for momentum</p>
+            <h2>From kickoff to launch, your team stays aligned.</h2>
+          </div>
+          <p>
+            NovaFlow gives product, marketing, and operations teams one shared source of truth to plan,
+            collaborate, and ship with confidence.
+          </p>
+        </div>
+      </section>
+
+      <section id="contact" class="contact container">
+        <div class="contact-card">
+          <div class="contact-copy">
+            <p class="eyebrow">Let’s talk</p>
+            <h2>Schedule a live walkthrough</h2>
+            <p>Tell us a bit about your goals and we’ll show you how to simplify your next launch.</p>
+          </div>
+
+          <form id="demo-form" class="demo-form">
+            <label>
+              Full name
+              <input type="text" name="name" placeholder="Enter your name" required />
+            </label>
+            <label>
+              Work email
+              <input type="email" name="email" placeholder="you@company.com" required />
+            </label>
+            <label>
+              Team size
+              <select name="teamSize">
+                <option value="1-10">1-10</option>
+                <option value="11-50">11-50</option>
+                <option value="51-200">51-200</option>
+                <option value="200+">200+</option>
+              </select>
+            </label>
+            <button class="btn btn-primary full-width" type="submit">Request demo</button>
+            <p id="form-message" class="form-message" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-inner">
+        <span>© 2026 NovaFlow</span>
+        <span>hello@novaflow.io</span>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
