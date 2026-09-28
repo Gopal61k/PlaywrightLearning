@@ -12,7 +12,7 @@ test("upload resume in naukri ",async({page})=>
     //await page.getByRole('button',{name:'Login'}).click()
 const loginButton = page.getByRole('button',{ name: 'Login',exact:true});
 await loginButton.click();
-
+//URL
 await expect(page).toHaveURL("https://www.naukri.com/mnjuser/homepage")
 
 //upload resume
