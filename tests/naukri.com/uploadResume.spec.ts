@@ -7,14 +7,14 @@ test("upload resume in naukri ",async({page})=>
     //login locator
     await page.getByTitle('Jobseeker Login').click()
 
-    await page.getByLabel("Username").fill("gopal.karhale93@gmail.com")
+    await page.getByLabel("Username").fill("gopalkarhale1@outlook.com")
     await page.getByPlaceholder('Enter your password').fill("Gopal@93#k")
     //await page.getByRole('button',{name:'Login'}).click()
 const loginButton = page.getByRole('button',{ name: 'Login',exact:true});
 await loginButton.click();
 //URL
 await expect(page).toHaveURL("https://www.naukri.com/mnjuser/homepage")
-console.log("login successfully")
+
 //upload resume
 await page.getByLabel('Open profile menu').click()
 //
@@ -37,7 +37,7 @@ await page.getByRole('link',{name:'View & Update Profile'}).click()
   const fileChooser = await fileChooserPromise;
 
   // Upload resume
-  await fileChooser.setFiles('uploads/RESUME.pdf');
+  await fileChooser.setFiles('uploads/Gopal_Karhale_QA_Test_Engg.pdf');
 
 
 
