@@ -2,22 +2,21 @@ import{test,expect} from "@playwright/test"
  
 test("upload resume in naukri ",async({page})=>
 {
-    await page.goto("http://www.naukri.com",{timeout:2000})
+    await page.goto("http://www.naukri.com")
 
     //login locator
     await page.getByTitle('Jobseeker Login').click()
 
     await page.getByLabel("Username").fill("gopalkarhale1@outlook.com")
-    await page.getByPlaceholder('Enter your password').fill("Gopal@93#k")
+    await page.getByPlaceholder('Enter your password').fill("Gopal@1122")
     //await page.getByRole('button',{name:'Login'}).click()
 const loginButton = page.getByRole('button',{ name: 'Login',exact:true});
 await loginButton.click();
-//URL
+
 await expect(page).toHaveURL("https://www.naukri.com/mnjuser/homepage")
 
 //upload resume
 await page.getByLabel('Open profile menu').click()
-//
 await page.getByRole('link',{name:'View & Update Profile'}).click()
 
 
