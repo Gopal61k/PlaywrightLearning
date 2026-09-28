@@ -11,7 +11,6 @@ test("upload resume in naukri ",async({page})=>
     await page.getByPlaceholder('Enter your password').fill("Gopal@93#k")
     //await page.getByRole('button',{name:'Login'}).click()
 const loginButton = page.getByRole('button',{ name: 'Login',exact:true});
-//
 await loginButton.click();
 // Verify that the URL is correct after login
 await expect(page).toHaveURL("https://www.naukri.com/mnjuser/homepage")
