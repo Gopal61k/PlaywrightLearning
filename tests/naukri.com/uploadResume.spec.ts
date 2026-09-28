@@ -14,7 +14,7 @@ const loginButton = page.getByRole('button',{ name: 'Login',exact:true});
 await loginButton.click();
 //URL
 await expect(page).toHaveURL("https://www.naukri.com/mnjuser/homepage")
-
+console.log("login successfully")
 //upload resume
 await page.getByLabel('Open profile menu').click()
 //
