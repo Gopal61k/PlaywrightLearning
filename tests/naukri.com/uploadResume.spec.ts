@@ -21,17 +21,11 @@ await expect(page).toHaveURL("https://www.naukri.com/mnjuser/homepage")
 await page.getByLabel('Open profile menu').click()
 await page.getByRole('link',{name:'View & Update Profile'}).click()
 
-
-
-
-
-
 // Start listening for file chooser BEFORE clicking Update resume
   const fileChooserPromise = page.waitForEvent('filechooser');
 
   // Click Update resume
-  await page.getByRole('button', {
-    name: 'Update resume'
+  await page.getByRole('button', {name: 'Update resume'
   }).click();
  
   // Get file chooser
