@@ -52,23 +52,15 @@ const homepage=new HomePage(page)
 
 //login page
 await loginpage.navigateTOLogin() 
-await loginpage.login(signedUpUser!.username,signedUpUser!.password)
-
+//await loginpage.login(signedUpUser!.username,signedUpUser!.password)
+await loginpage.login('Gopal_1697040910340',testPassword)
 
 //home page-> add product
 await page.waitForTimeout(1000)
-homepage.addProductToCart(testProduct)
+await homepage.addProductToCart(testProduct)
 
-await page.waitForTimeout(2000)
-homepage.navigateToCart()
 //await page.waitForTimeout(2000)
- 
-
- 
-
-
-})
-
-
+await homepage.navigateToCart()
+});
 
 })

@@ -8,7 +8,6 @@ export class HomePage
     private readonly productLinks:Locator;
     private readonly addToCartButton:Locator;
     private readonly cartLink:Locator;
-   // private readonly categoryLinks:Locator;
    private readonly categoryLinks:Locator;
 
     //Initialize constructor
@@ -24,7 +23,7 @@ export class HomePage
     }
  
     //select all product --> one product from all
-    async selectProductByName(productName:string)
+    async isProductVisible(productName:string)
     {
         const productElements=await this.productLinks.all()
      
@@ -45,7 +44,7 @@ export class HomePage
 //product action: add product
 async addProductToCart(productName:string)
 {
-    await this.selectProductByName(productName)
+    await this.isProductVisible(productName)
     //Handle popup dialog that appears after adding product in card
     this.page.once('dialog',async dialog=>
     {
@@ -59,7 +58,7 @@ async addProductToCart(productName:string)
     await this.addToCartButton.click();
 }
 
- //navigate to csrt link
+ //navigate to cart link
     async navigateToCart()
     {
         await this.cartLink.click()
