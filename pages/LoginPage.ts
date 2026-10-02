@@ -1,4 +1,4 @@
-import{Page,Locator,expect} from '@playwright/test'
+import{Page,Locator,expect,Dialog} from '@playwright/test'
 export class LoginPage{
 
     //Define properties
@@ -62,8 +62,26 @@ export class LoginPage{
     {
         await this.fillUsername(username)
         await this.fillPassword(password)
-        await this.subminLogin()
-    }
+        let loginAlertMessage: string | undefined
+        const handleLoginDialog = async (dialog: Dialog) => {
+            loginAlertMessage = dialog.message()
+            await dialog.accept()
+        }
+        this.page.on('dialog', handleLoginDialog)
+
+        try {
+            await this.subminLogin()
+            await expect(this.page.locator('#nameofuser')).toContainText(username)
+            await expect(this.page.locator('#logInModal')).toBeHidden()
+        } catch (error) {
+            if (loginAlertMessage) {
+                throw new Error(`Login was rejected: ${loginAlertMessage}`)
+            }
+            throw error
+        } finally {
+            this.page.off('dialog', handleLoginDialog)
+        }
+     }
 
     //Helper methods
     async getUsernamevalue():Promise<string>{

@@ -15,7 +15,7 @@ export class HomePage
     constructor(page:Page)
     {
         this.page=page;
-        this.productLinks=page.locator('div#tbodyid div.card h4.card-title a')
+        this.productLinks=page.locator('div#tbodyid div.card h4.card-title a').nth(2)
         this.addToCartButton=page.locator("//a[contains(text(),'Add to cart')]")
         this.cartLink=page.locator("#cartur")
         this.categoryLinks=page.locator('#.list-group a')
@@ -45,17 +45,13 @@ export class HomePage
 async addProductToCart(productName:string)
 {
     await this.isProductVisible(productName)
-    //Handle popup dialog that appears after adding product in card
-    this.page.once('dialog',async dialog=>
-    {
-        if(dialog.message().includes('added'))
-        {
-            await dialog.accept();
-        }
-
-
+    const dialogPromise = this.page.waitForEvent('dialog').then(async dialog => {
+        const message = dialog.message()
+        await dialog.accept()
+        return message
     })
     await this.addToCartButton.click();
+    expect((await dialogPromise).toLowerCase()).toContain('added')
 }
 
  //navigate to cart link
