@@ -1,66 +1,80 @@
-import{test,expect} from '@playwright/test'
-import { LoginPage} from '../../pages/LoginPage';
-import { signUpPage } from '../../pages/signUpPage';
-import { HomePage  } from '../../pages/HomePage';
+import { test, expect } from '@playwright/test';
+import { CartPage } from '../../pages/CartPage';
+import { HomePage } from '../../pages/HomePage';
+import { LoginPage } from '../../pages/LoginPage';
+import { SignUpPage } from '../../pages/signUpPage';
 
- 
-test.describe.configure({mode:'serial'});
+test.describe.configure({ mode: 'serial' });
 
-test.describe('Demoblaze tests',()=>{
+test.describe('Demoblaze Tests', () => {
+  const baseUrl = 'https://www.demoblaze.com/index.html';
+  const testProduct = 'Nexus 6';
+  const testPassword = 'Test@1234';
+  let signedUpUser: { username: string; password: string } | undefined;
 
-    //comman functionality
-    const baseUrl='https://www.demoblaze.com/index.html';
-    const testProduct='Nexus 6';
-    const testPassword='test@1234'
+  test.beforeEach(async ({ page }) => {
+    await page.goto(baseUrl, { waitUntil: 'domcontentloaded' });
+  });
 
-    let signedUpUser:{username:string,password:string}| undefined;
+  test('User can sign up with a new account', async ({ page }) => {
+    const signUpPage = new SignUpPage(page);
+    signedUpUser = {
+      username: `pavan_${Date.now()}`,
+      password: testPassword
+    };
 
+    const alertMessage = await signUpPage.signUp(signedUpUser.username, signedUpUser.password);
+    expect(alertMessage).toContain('Sign up successful');
+  });
 
-    //launch Url before each test ==> 
-    test.beforeEach(async({page})=>{
-        await page.goto(baseUrl)
-    })
+  test('User can login, add a product to cart and verify it', async ({ page }) => {
+    expect(signedUpUser).toBeDefined();
 
-    //closer browser after each test==> close browseer
-    test.afterEach(async({page})=>{
-        await page.close()
-    })
+    const loginPage = new LoginPage(page);
+    const homePage = new HomePage(page);
+    const cartPage = new CartPage(page);
 
-    //user sign Up account
+    await loginPage.navigateToLogin();
+    await loginPage.login(signedUpUser!.username, signedUpUser!.password);
 
-    test('User can sign up with a new account',async({page})=>{
-   const signuppage=new signUpPage(page);
+    await page.waitForTimeout(2000);
+    await homePage.addProductToCart(testProduct);
+    await page.waitForTimeout(1000);
 
- signedUpUser={
-    username:`Gopal_${Date.now()}`,
-    password:testPassword
- }
- const alertMessage=await signuppage.signUp(signedUpUser.username,signedUpUser.password)
-  expect(alertMessage).toContain('Sign up successful.')
+    await homePage.navigateToCart();
+    await page.waitForTimeout(1000);
 
+    await cartPage.waitForCartToLoad();
+    const isProductInCart = await cartPage.isProductInCart(testProduct);
+    expect(isProductInCart).toBe(true);
+  });
 
-    })
+  //Assignment: Add a test case to remove a product from the cart and verify that it has been removed successfully.
+  test('User can remove product from cart', async ({ page }) => {
+    expect(signedUpUser).toBeDefined();
 
+    const loginPage = new LoginPage(page);
+    const homePage = new HomePage(page);
+    const cartPage = new CartPage(page);
+
+    await loginPage.navigateToLogin();
+    await loginPage.login(signedUpUser!.username, signedUpUser!.password);
+    await page.waitForTimeout(2000);
+
+    await homePage.addProductToCart(testProduct);
+    await page.waitForTimeout(1000);
+
+    await homePage.navigateToCart();
+    await cartPage.waitForCartToLoad();
+
+    let isProductInCart = await cartPage.isProductInCart(testProduct);
+    if(isProductInCart){
+      await cartPage.removeProductFromCart(testProduct);
+    }
     
-//Test case 2: login user
+    //verify that the product has been removed from the cart
+    isProductInCart = await cartPage.isProductInCart(testProduct);
+     expect(isProductInCart).not.toBe(true);
 
-test("user can login,add product to cart and validate it",async({page})=>{
-
-//object of page
-const loginpage=new LoginPage(page)
-const homepage=new HomePage(page)
-
-//login page
-await loginpage.navigateTOLogin() 
-//await loginpage.login(signedUpUser!.username,signedUpUser!.password)
-await loginpage.login('Gopal_1697040910340',testPassword)
-
-//home page-> add product
-await page.waitForTimeout(1000)
-await homepage.addProductToCart(testProduct)
-
-//await page.waitForTimeout(2000)
-await homepage.navigateToCart()
+  });
 });
-
-})

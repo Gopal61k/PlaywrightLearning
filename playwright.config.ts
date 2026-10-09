@@ -20,10 +20,24 @@ export default defineConfig({
   /* Retry on CI only */
   retries: process.env.CI ? 2 : 0,
   /* Opt out of parallel tests on CI. */
-  workers :2,
+  workers :3,
   //workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: 'html',
+  //reporter: 'html',
+  // reporter: [['html', { open: 'always', outputFolder: 'playwright-report' }]],
+
+  reporter:
+  [
+    //['html'],
+    //['list'],
+    //['dot'] // ..o F [passed, skip, failed]
+  // ['json'],
+   //['junit'],
+   ['./tests/day40/customeReport.spec.ts',{customeoption:'some value'}]
+  ],
+
+
+
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('')`. */
