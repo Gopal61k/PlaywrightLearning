@@ -44,8 +44,8 @@ export default defineConfig({
     // baseURL: 'http://localhost:3000','
     baseURL:"https://restful-booker.herokuapp.com",
     screenshot: 'only-on-failure',
-    video: 'retain-on-failure',
-    trace: 'retain-on-failure',
+   // video: 'retain-on-failure',
+   // trace: 'retain-on-failure',
   },
 
   /* Configure projects for major browsers */
