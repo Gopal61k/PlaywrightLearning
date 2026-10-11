@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test';
 import fs from 'fs';
  
 //create global URL
-const BASE_URL = 'https://restful-booker.herokuapp.com';
+//const BASE_URL = 'https://restful-booker.herokuapp.com';
 
 test('create post request body json', async ({ request }) => {
     //Path of json forlder
@@ -10,7 +10,7 @@ test('create post request body json', async ({ request }) => {
   //get responsePayload 
   const responsePayload = JSON.parse(fs.readFileSync(jsonPath, 'utf-8'));
 //create post request
-  const response = await request.post(`${BASE_URL}/booking`, { data: responsePayload });
+  const response = await request.post(`./booking`, { data: responsePayload });
 const responseBody = await response.json();
   //print responseBpdy
   console.log(responseBody)
