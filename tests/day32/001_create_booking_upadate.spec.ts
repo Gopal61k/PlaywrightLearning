@@ -110,12 +110,4 @@ const full_updareResponse=await request.put(`/booking/${bookingId}`,
         expect(deleteResponse.statusText()).toBe("Created")
 
         console.log("Booking Details are Deleted....")
-
-
-
-
-
-
-
-
 })
